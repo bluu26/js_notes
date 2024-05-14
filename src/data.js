@@ -143,28 +143,28 @@ const data = [
 
 // policzyc srednia wieku dla osob spoza Warszawy
 
-
-function calcAvgAgeCustom(people){
-    let totalAge = 0;
-    let counter = 0;
-    for (let i = 0; i < people.length; i++) {
-        if (people[i].city.toLowerCase() !== 'warszawa'
-            || people[i].city.toLowerCase() !== 'warsaw') {
-            totalAge += people[i].age;
-            counter++;
-        }
-    }
-    return Math.round(totalAge / people.length);
-
-
-}
-
-const calcAvgAgeCustom2 = function (people) {
-
-}
-
-const result = calcAvgAgeCustom(data);
-console.log(result)
+//
+// function calcAvgAgeCustom(people){
+//     let totalAge = 0;
+//     let counter = 0;
+//     for (let i = 0; i < people.length; i++) {
+//         if (people[i].city.toLowerCase() !== 'warszawa'
+//             || people[i].city.toLowerCase() !== 'warsaw') {
+//             totalAge += people[i].age;
+//             counter++;
+//         }
+//     }
+//     return Math.round(totalAge / people.length);
+//
+//
+// }
+//
+// const calcAvgAgeCustom2 = function (people) {
+//
+// }
+//
+// const result = calcAvgAgeCustom(data);
+// console.log(result)
 
 
 // data
@@ -187,21 +187,92 @@ console.log(result)
 
 // czy jest ktos z krk?
 
-function isFromKrk(items) {
-    if (items.filter(item => item.city === 'krakow').length > 0);
-}
+// function isFromKrk(items) {
+//     if (items.filter(item => item.city === 'krakow').length > 0);
+// }
+//
+// function isFromKrk(items) {
+//     for (const item of items){
+//         if (item.city.toLowerCase() === 'krakow') {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+//
+// const isFromKrk = items.some((item) => item.city.toLowerCase() === 'krakow')
+//
+// const result = isFromKrk(data);
+// console.log(result);
 
-function isFromKrk(items) {
+
+
+//czy wszyscy kochaja js (includes/indexof) -> true/false
+
+
+function javaLove(items) {
     for (const item of items){
-        if (item.city.toLowerCase() === 'krakow') {
-            return true;
+        if(!item.hobbies.includes('js')){
+            return false;
         }
     }
-    return false;
+    return true;
 }
 
-const isFromKrk = items.some((item) => item.city.toLowerCase() === 'krakow')
+const javaLove2 = (items) => items.every((item) => !item.hobbies.includes('js'))
 
-const result = isFromKrk(data);
+
+// const result = javaLove2(data);
+// console.log(result);
+
+//  ile jest hobbies bez powtorzen (unique)
+
+// function howManyHobb(items) {
+//     let counter = 0;
+//     for (const item of items){
+//         if(item.hobbies.unique){
+//             counter ++;
+//         }
+//     }
+// }
+//
+// const result = howManyHobb(data);
+// console.log(result);
+
+
+const countHobbies = function (elements) {
+    const hobbies = [];
+
+    for (const element of elements){
+        for (const hobby of element.hobbies){
+            if (!hobbies.includes(hobby)){
+                hobbies.push(hobby);
+            }
+        }
+    }
+    return hobbies.length;
+}
+
+// const result = countHobbies(data);
+// console.log(result);
+
+
+const aaaa = function (elements) {
+    const hobbies = new Set();
+
+    for (const element of elements) {
+        for (const hobby of element.hobbies) {
+            hobbies.add(hobby);
+        }
+    }
+    return hobbies.size
+}
+
+// const result = aaaa(data);
+// console.log(result);
+
+
+const uniqueHobbies3 = (elements) => new Set(elements.flatMap((element) => element.hobbies)).size;
+
+const result = uniqueHobbies3(data);
 console.log(result);
-
